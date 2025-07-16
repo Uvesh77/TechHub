@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.theamLeaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Registration Page</title>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/form.css">
+    <!-- Google Web Fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+<!-- Libraries Stylesheet -->
+<link href="lib/animate/animate.min.css" rel="stylesheet">
+<link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+<!-- Customized Bootstrap Stylesheet -->
+<link href="css/cstyle.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .success-message {
+            color: green;
+            display: none;
+        }
+	</style>
+    <style>
+        .hidden {
+            display: none;
+        }
+	</style>
+</head>
+<body>
+	<!-- Topbar Start -->
+    <div class="container-fluid">
+        <div class="row bg-secondary py-1 px-xl-5">
+            <div class="col-lg-6 d-none d-lg-block">
+                <!-- <div class="d-inline-flex align-items-center h-100">
+                    <a class="text-body mr-3" href="">About</a>
+                    <a class="text-body mr-3" href="contact">Contact</a>
+                    <a class="text-body mr-3" href="">Help</a>
+                    <a class="text-body mr-3" href="">FAQs</a>
+                </div> -->
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My Account</button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="loginf"><button class="dropdown-item" type="button">Sign in</button></a>
+                            <a href="register"><button class="dropdown-item" type="button">Sign up</button></a>
+                        </div>
+                    </div>
+                    <div class="btn-group mx-2">
+                        <!-- <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">INR</button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <button class="dropdown-item" type="button">USD</button>
+                            <button class="dropdown-item" type="button">EUR</button>
+                            <button class="dropdown-item" type="button">GBP</button>
+                            <button class="dropdown-item" type="button">CAD</button>
+                        </div> -->
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">EN</button>
+                        <!-- <div class="dropdown-menu dropdown-menu-right">
+                            <button class="dropdown-item" type="button">FR</button>
+                            <button class="dropdown-item" type="button">AR</button>
+                            <button class="dropdown-item" type="button">RU</button>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="d-inline-flex align-items-center d-block d-lg-none">
+                    <a href="" class="btn px-0 ml-2">
+                        <i class="fas fa-heart text-dark"></i>
+                        <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
+                    </a>
+                    <a href="" class="btn px-0 ml-2">
+                        <i class="fas fa-shopping-cart text-dark"></i>
+                        <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
+            <div class="col-lg-4">
+                <a href="" class="text-decoration-none">
+                    <span class="h1 text-uppercase text-primary bg-dark px-2">Tech</span>
+                    <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Hub</span>
+                </a>
+            </div>
+            <div class="col-lg-4 col-6 text-left">
+                <!-- <form action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for products">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-transparent text-primary">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </form> -->
+            </div>
+            <div class="col-lg-4 col-6 text-right">
+                <p class="m-0">Customer Service</p>
+                <h5 class="m-0">+91 82006 55660</h5>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid bg-dark mb-30">
+        <div class="row px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <a class="btn d-flex align-items-center justify-content-between bg-primary w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; padding: 0 30px;">
+                    <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Categories</h6>
+                    <i class="fa fa-angle-down text-dark"></i>
+                </a>
+                <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
+                    <div class="navbar-nav w-100">
+                        <div class="nav-item dropdown dropright">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Laptops <i class="fa fa-angle-right float-right mt-1"></i></a>
+                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
+                                <a href="" class="dropdown-item">Hp Laptops</a>
+                                <a href="" class="dropdown-item">Dell Laptops</a>
+                                <a href="" class="dropdown-item">Apple Laptops</a>
+                                <a href="" class="dropdown-item">Asus Laptops</a>
+                                <a href="" class="dropdown-item">Lenovo Laptops</a>
+                            </div>
+                        </div>
+                        <a href="" class="nav-item nav-link">Laptop Stand</a>
+                        <a href="" class="nav-item nav-link">Laptop Bag</a>
+                        <a href="" class="nav-item nav-link">Laptop Sleeve</a>
+                        <a href="" class="nav-item nav-link">Laptop Cleaning Brush</a>
+                        <a href="" class="nav-item nav-link">RAM</a>
+                        <a href="" class="nav-item nav-link">SSD</a>
+                        <a href="" class="nav-item nav-link">Hard Drive</a>
+                        <a href="" class="nav-item nav-link">Processor</a>
+                        <a href="" class="nav-item nav-link">Keyboard</a>
+                        <a href="" class="nav-item nav-link">Mouse</a>
+                        <a href="" class="nav-item nav-link">Mouse Pad</a>
+                        <a href="" class="nav-item nav-link">Cable Charger Protector</a>
+                        <a href="" class="nav-item nav-link">Webcam Cover Slide</a>
+                        
+                    </div>
+                </nav>
+            </div>
+            <div class="col-lg-9">
+                <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
+                    <a href="" class="text-decoration-none d-block d-lg-none">
+                        <span class="h1 text-uppercase text-dark bg-light px-2">Tech</span>
+                        <span class="h1 text-uppercase text-light bg-primary px-2 ml-n1">Hub</span>
+                    </a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto py-0">
+                            <a href="customer" class="nav-item nav-link">Home</a>
+                            <a href="shop" class="nav-item nav-link">Shop</a>
+                            
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down mt-1"></i></a>
+                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                    <a href="cart" class="dropdown-item">Shopping Cart</a>
+                                    <a href="checkout" class="dropdown-item">Checkout</a>
+                                </div>
+                            </div>
+                            <a href="contact" class="nav-item nav-link">Contact</a>
+                        </div>
+                        <!-- <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
+                            <a href="" class="btn px-0">
+                                <i class="fas fa-heart text-primary"></i>
+                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
+                            </a>
+                            <a href="cart" class="btn px-0 ml-3">
+                                <i class="fas fa-shopping-cart text-primary"></i>
+                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
+                            </a>
+                        </div> -->
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+	<div class="registration-form">
+        <form id="register" th:action="@{/register}" th:object="${user}" method="post">
+        <h4 class="headtext">Registration</h4>
+        <div id="successMessage" class="success-message">
+					Registration Successful !</div>
+					<br>
+			<div class="form-icon">
+                <span><i class="icon icon-user"></i></span>
+            </div>
+            <div class="form-group">
+                <!-- <label for="F_name">Enter First Name</label> -->
+                <input th:field="*{F_Name}" name="F_Name" type="text" class="form-control item" id="F_Name" placeholder="First Name" required/>
+            </div>
+            <div class="form-group">
+                <!-- <label for="L_name">Enter Last Name</label> -->
+                <input th:field="*{L_Name}" name="L_Name" type="text" class="form-control item" id="L_Name" placeholder="Last Name" required/>
+            </div>
+            <div class="form-group">
+                <!-- <label for="username">Enter Username</label> -->
+                <input th:field="*{username}" name="username" type="text" class="form-control item" id="username" placeholder="Username" required/>
+            </div>
+            <div class="form-group">
+                <!-- <label for="password">Enter Password</label> -->
+                <input th:field="*{password}" name="password" type="password" class="form-control item" id="password" placeholder="Password" required/>
+            </div>
+            <div class="form-group">
+                <!-- <label for="user_email">Enter Your Email</label> -->
+                <input th:field="*{user_email}" name="user_email" type="email" class="form-control item" id="user_email" placeholder="Email" required/>
+            </div>
+            <div class="form-group">
+                <!-- <label for="phone_number">Enter Your Phone Number</label> -->
+                <input th:field="*{phone_number}" name="phone_number" type="text" class="form-control item" id="phone-number" placeholder="Phone Number" required/>
+            </div>
+            <div class="form-group">
+                <!-- <label for="user_DOB">Enter Birth Date</label> -->
+                <input th:field="*{user_DOB}" name="user_DOB" type="text" class="form-control item" id="birth-date" placeholder="Birth Date" required/>
+            </div>
+            
+            <div class="form-group">
+                <!-- <label for="user_Role">Select User Type</label> -->
+                    <select name="user_Role" id="userType" class="form-control item dropitem" onchange="toggleFields()">
+                        <option selected disabled>Select User Type</option>
+                        <option value="Customer" >Customer/Buyer</option>
+                    </select>
+            </div>
+            <div class="hidden" id="forCustomer">
+                <div class="form-group">
+                    <!-- <label for="address">Enter Address</label> -->
+                    <input th:field="*{address}" name="address" type="text" class="form-control item" id="address" placeholder="Address" required/>
+                </div>
+                <div class="form-group">
+                    <!-- <label for="city">Enter City</label> -->
+                    <input th:field="*{city}" name="city" type="text" class="form-control item" id="city" placeholder="City" required/>
+                </div>
+            </div>
+            <div class="container text-center">
+                <button id="registerr" class="btn btn-block create-account" name="registerr">Create Account</button>
+                <button type="button" onclick="clearForm()" class="btn btn-block create-account">Clear Form</button>
+            </div>
+        </form>
+        <div class="social-media">
+            <h5><a href="/loginf" class="linkc">Already Registered ? Sign In</a></h5>
+            <h5 class="headtext">Sign up with social media</h5>
+            <div class="social-icons">
+                <a href="#"><i class="icon-social-facebook" title="Facebook"></i></a>
+                <a href="#"><i class="icon-social-google" title="Google"></i></a>
+                <a href="#"><i class="icon-social-twitter" title="Twitter"></i></a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer Fragment Start -->
+    <div th:replace="fragments/fragments ::footer">
+
+    </div>
+    <!-- Footer Fragment End -->
+    
+    <!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Contact Javascript File -->
+<script src="mail/jqBootstrapValidation.min.js"></script>
+<script src="mail/contact.js"></script>
+
+<!-- Template Javascript -->
+<script src="js/cmain.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <!-- <script src="/js/forms.js"></script> -->
+    <script>
+        $(document).ready(function(){
+            $('#birth-date').mask('0000/00/00');
+            $('#phone-number').mask('0000000000');
+        })
+    </script>
+    <script>
+		function clearForm() {
+            document.getElementById("register").reset();
+		}
+	</script>
+	<script>
+		$(document).ready(function() {
+			$('#register').submit(function(event) {
+				event.preventDefault(); // Prevent default form submission
+
+				$.ajax({
+					type : 'POST',
+					url : '/register', // Replace with your endpoint URL
+					data : $(this).serialize(), // Serialize form data
+					success : function(response) {
+						// Clear form fields on successful submission
+						$('#register')[0].reset();
+						$('#successMessage').fadeIn().delay(2000).fadeOut(); // Fade in, wait 2 seconds, fade out
+					},
+					error : function(xhr, status, error) {
+						// Handle error if any
+						console.error(xhr.responseText);
+					}
+				});
+			});
+		});
+	</script>
+    <script>
+        function toggleFields() {
+            var selectedType = document.getElementById("userType").value;
+
+            // Hide fields
+            document.getElementById("forCustomer").classList.add("hidden");
+
+            // Show fields based on selected type
+            if (selectedType == "Customer") {
+                document.getElementById("forCustomer").classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

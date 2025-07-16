@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.theamLeaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Profile Page</title>
+    <!-- <meta content="Free HTML Templates" name="description"> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/form.css">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/cstyle.css" rel="stylesheet">
+    
+</head>
+
+<body>
+	
+    <!-- Header Fragment Start -->
+    <div th:replace="fragments/fragments ::header">
+
+    </div>
+    <!-- Header Fragment End -->
+
+    <div class="registration-form">
+        
+        <form th:action="@{/update-profile}" method="post" th:object="${profile}">
+            <h4 class="headtext">Your Profile</h4>
+            <div class="text alert alert-warning" th:if="${error}">
+                <p th:text="${error}"></p>
+            </div>
+			<div class="form-icon">
+                <!-- <img class="rounded-circle" src="img/user.jpg" alt="profile image" style="width: 100px; height: 107px;"> -->
+                <span><i class="icon icon-user"></i></span>
+            </div>
+            <div class="form-group">
+                <label for="F_name">First Name</label>
+                <input th:value="${profile.F_Name}" name="F_Name" type="text" class="form-control item" id="F_Name" placeholder="First Name" required/>
+            </div>
+            <div class="form-group">
+                <label for="L_name">Last Name</label>
+                <input th:value="${profile.L_Name}" name="L_Name" type="text" class="form-control item" id="L_Name" placeholder="Last Name" required/>
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input th:value="${profile.username}" name="username" type="text" class="form-control item" id="username" placeholder="Username" readonly/>
+            </div>
+            
+            <div class="form-group">
+                <label for="user_email">Your Email</label>
+                <input th:value="${profile.user_email}" name="user_email" type="email" class="form-control item" id="user_email" placeholder="Email" required/>
+            </div>
+            <div class="form-group">
+                <label for="phone_number">Your Phone Number</label>
+                <input th:value="${profile.phone_number}" name="phone_number" type="text" class="form-control item" id="phone-number" placeholder="Phone Number" required/>
+            </div>
+            <div class="form-group">
+                <label for="user_DOB">Birth Date</label>
+                <input th:value="${profile.user_DOB}" name="user_DOB" type="text" class="form-control item" id="birth-date" placeholder="Birth Date" required/>
+            </div>
+            <div class="form-group">
+                <label for="address">Your Address</label>
+                <input th:value="${profile.address}" name="address" type="text" class="form-control item" id="address" placeholder="Address"/>
+            </div>
+            <div class="form-group">
+                <label for="city">Your City</label>
+                <input th:value="${profile.city}" name="city" type="text" class="form-control item" id="city" placeholder="City"/>
+            </div>
+            <div class="form-group">
+                <label for="city">Your State</label>
+                <input th:value="${profile.state}" name="state" type="text" class="form-control item" id="state" placeholder="State"/>
+            </div>
+            <div class="form-group">
+                <label for="city">Your ZipCode</label>
+                <input th:value="${profile.ZipCode}" name="ZipCode" type="text" class="form-control item" id="ZipCode" placeholder="ZipCode"/>
+            </div>
+            <div class="form-group">
+                <label for="city">Your Country</label>
+                <input th:value="${profile.country}" name="country" type="text" class="form-control item" id="country" placeholder="Country"/>
+            </div>
+            
+            <div class="container text-center">
+                <button type="submit" class="btn btn-block create-account">Update Account</button>
+            </div>
+        </form>
+        <div class="social-media">
+            <!-- <h5><a href="/loginf" class="linkc">Already Registered ? Sign In</a></h5>
+            <h5 class="headtext">Sign up with social media</h5>
+            <div class="social-icons">
+                <a href="#"><i class="icon-social-facebook" title="Facebook"></i></a>
+                <a href="#"><i class="icon-social-google" title="Google"></i></a>
+                <a href="#"><i class="icon-social-twitter" title="Twitter"></i></a>
+            </div> -->
+        </div>
+    </div>
+    
+
+
+
+    <!-- Footer Fragment Start -->
+    <div th:replace="fragments/fragments ::footer">
+
+    </div>
+    <!-- Footer Fragment End -->
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/cmain.js"></script>
+     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#birth-date').mask('0000/00/00');
+            $('#phone-number').mask('0000000000');
+        })
+    </script>
+    <script>
+		$(document).ready(function() {
+			$('#profile').submit(function(event) {
+				event.preventDefault(); // Prevent default form submission
+
+				$.ajax({
+					type : 'POST',
+					url : '/profile', // Replace with your endpoint URL
+					data : $(this).serialize(), // Serialize form data
+					success : function(response) {
+						// Clear form fields on successful submission
+						$('#profile')[0].reset();
+						$('#successMessage').fadeIn().delay(2000).fadeOut(); // Fade in, wait 2 seconds, fade out
+					},
+					error : function(xhr, status, error) {
+						// Handle error if any
+						console.error(xhr.responseText);
+					}
+				});
+			});
+		});
+	</script>
+</body>
+
+</html>

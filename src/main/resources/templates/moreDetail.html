@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.theamLeaf.org"><!-- -->
+<head>
+<meta charset="ISO-8859-1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product Detail</title>
+<!-- Favicon -->
+    <link href="/img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="/css/style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<style>
+        .hidden {
+            display: none;
+        }
+	</style>
+</head>
+<body>
+<div class="container-xxl position-relative bg-white d-flex p-0">
+        
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+        
+        
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-light navbar-light">
+                <a href="admin" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>Dashboard</h3>
+                </a>
+                <div class="d-flex align-items-center ms-4 mb-4">
+                    <div class="position-relative">
+                        <img class="rounded-circle" src="img/user.jpg" alt="profile image" style="width: 40px; height: 40px;">
+                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                    </div>
+                    <div class="ms-3">
+                        <h6 class="mb-0">[[${user_Master.getUsername()}]]</h6>
+                        <span>Admin</span>
+                    </div>
+                </div>
+                <div class="navbar-nav w-100">
+                    <a href="admin" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Manage Product</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a th:href="addBrand" class="dropdown-item">Add Brand</a>
+                            <a th:href="addCategory" class="dropdown-item">Add Category</a>
+                            <a th:href="addProduct" class="dropdown-item ">Add Product</a>
+                            <a th:href="viewproduct" class="dropdown-item active">View Product</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <!-- <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Payment Method</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a th:href="addPaymentMethod" class="dropdown-item">Add Payment Method</a> -->
+                            
+                            <!-- <a th:href="#" class="dropdown-item">View Payment Method</a> -->
+                            <!-- <a th:href="buttonp" class="dropdown-item">Other Elements</a> -->
+                        </div>
+                    </div>
+                    <!-- <a href="#" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
+                    <a href="#" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
+                    <a href="#" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
+                    <a href="#" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="#" class="dropdown-item">Sign In</a>
+                            <a href="#" class="dropdown-item">Sign Up</a>
+                            <a href="#" class="dropdown-item">404 Error</a>
+                            <a href="#" class="dropdown-item">Blank Page</a>
+                        </div>
+                    </div> -->
+                </div>
+                
+            </nav>
+        </div>
+        <!-- Sidebar End -->
+        
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+                <a href="admin" class="navbar-brand d-flex d-lg-none me-4">
+                    <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
+                </a>
+                <a href="#" class="sidebar-toggler flex-shrink-0">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <form class="d-none d-md-flex ms-4">
+                    <input class="form-control border-0" type="search" placeholder="Search">
+                </form>
+                <div class="navbar-nav align-items-center ms-auto">
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-envelope me-lg-2"></i>
+                            <span class="d-none d-lg-inline-flex">Message</span>
+                        </a>
+                        <!-- <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                    <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                    <div class="ms-2">
+                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                        <small>15 minutes ago</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                    <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                    <div class="ms-2">
+                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                        <small>15 minutes ago</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                    <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                    <div class="ms-2">
+                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                        <small>15 minutes ago</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item text-center">See all message</a>
+                        </div> -->
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-bell me-lg-2"></i>
+                            <span class="d-none d-lg-inline-flex">Notificatin</span>
+                        </a>
+                        <!-- <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">Profile updated</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">New user added</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">Password changed</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item text-center">See all notifications</a>
+                        </div> -->
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                            <span class="d-none d-lg-inline-flex">[[${user_Master.getUsername()}]]</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">My Profile</a>
+                            <a href="#" class="dropdown-item">Settings</a>
+                            <a th:href="@{/logout}" class="dropdown-item">Log Out</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- Navbar End -->
+
+			<!-- Form Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    
+                    <div class="col-sm-12 col-xl-12">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4">Product Detail</h6>
+                            <!-- action="@{/edit}" -->
+                            <form method="post" enctype="multipart/form-data" th:object="${products}">
+                                <div class="row mb-3">
+                                    <label for="product_id" class="col-sm-3 col-form-label">Product ID</label>
+                                    <div class="col-sm-8">
+                                        <input readonly class="form-control" th:value="${products.product_id}" id="product_id">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="product_name" class="col-sm-3 col-form-label">Product Name</label>
+                                    <div class="col-sm-8">
+                                        <input readonly th:value="${products.product_name}" type="text" class="form-control" id="product_name">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="Manufacturer" class="col-sm-3 col-form-label">Manufacturer</label>
+                                    <div class="col-sm-8">
+                                        <input readonly th:value="${products.Manufacturer}" type="text" class="form-control" id="product_name">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="Country_of_Origin" class="col-sm-3 col-form-label">Country Of Origin</label>
+                                    <div class="col-sm-8">
+                                        <input readonly th:value="${products.Country_of_Origin}" type="text" class="form-control" id="Country_of_Origin">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="colour" class="col-sm-3 col-form-label">Product Colour</label>
+                                    <div class="col-sm-8">
+                                        <input readonly th:value="${products.colour}" type="text" class="form-control" id="colour">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="Series" class="col-sm-3 col-form-label">Series</label>
+                                    <div class="col-sm-8">
+                                        <input readonly th:value="${products.Series}" type="text" class="form-control" id="Series">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="product_Height" class="col-sm-3 col-form-label">Product Height</label>
+                                    <div class="col-sm-8">
+                                        <input readonly th:value="${products.product_Height}" type="text" class="form-control" id="product_Height">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="product_Weight" class="col-sm-3 col-form-label">Product Weight</label>
+                                    <div class="col-sm-8">
+                                        <input readonly th:value="${products.product_Weight}" type="text" class="form-control" id="product_Weight">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="Product_Dimensions" class="col-sm-3 col-form-label">Product Dimensions</label>
+                                    <div class="col-sm-8">
+                                        <input readonly th:value="${products.Product_Dimensions}" type="text" class="form-control" id="Product_Dimensions">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="Product_Decscription" class="col-sm-3 col-form-label">Product Description</label>
+                                    <div class="col-sm-8">
+                                        <input readonly th:value="${products.Product_Decscription}" type="text" class="form-control" id="Product_Decscription">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="Included_Components" class="col-sm-3 col-form-label">Included Components</label>
+                                    <div class="col-sm-8">
+                                        <input readonly th:value="${products.Included_Components}" type="text" class="form-control" id="Included_Components">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="Product_Warranty" class="col-sm-3 col-form-label">Product Warranty</label>
+                                    <div class="col-sm-8">
+                                        <input readonly th:value="${products.Product_Warranty}" type="text" class="form-control" id="Product_Warranty">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="product_Price" class="col-sm-3 col-form-label">Product Price</label>
+                                    <div class="col-sm-8">
+                                        <input readonly th:value="${products.product_Price}" type="text" class="form-control" id="product_Price">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="stockquantity" class="col-sm-3 col-form-label">Product Stock Quantity</label>
+                                    <div class="col-sm-8">
+                                        <input readonly th:field="${products.stockquantity}" min="1" type="number" class="form-control" id="stockquantity">
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <label for="Form_Factor" class="col-sm-3 col-form-label">Form Factor</label>
+                                    <div class="col-sm-8">
+                                        <input readonly th:value="${products.Form_Factor}" id="Form_Factor" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                
+                                
+                                <!--Hidden Fiels Of Laptop Start  -->
+                                
+                                <div id="Laptop" class="hidden">
+									
+									<div class="row mb-3">
+										<label for="Standing_screen_display_size" class="col-sm-3 col-form-label">Standing Screen Display Size</label>
+										<div class="col-sm-8">
+											<input readonly th:value="${products.Standing_screen_display_size}" type="text" class="form-control" id="Standing_screen_display_size">
+										</div>
+									</div>
+									<div class="row mb-3">
+                                        <label for="Screen_Resolution" class="col-sm-3 col-form-label">Screen Resolution</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Screen_Resolution}" type="text" class="form-control" id="Screen_Resolution">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Batteries" class="col-sm-3 col-form-label">Batteries</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Batteries}" type="text" class="form-control" id="Batteries">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Processor_Brand" class="col-sm-3 col-form-label">Processor Brand</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Processor_Brand}" type="text" class="form-control" id="Processor_Brand">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Processor_Type" class="col-sm-3 col-form-label">Processor Type</label>
+                                        <div class="col-sm-8">
+                                        	<input readonly th:value="${products.Processor_Type}" type="text" class="form-control" id="Processor_Type">
+                                    	</div>
+                                	</div>
+                                	<div class="row mb-3">
+                                    	<label for="Processor_Speed" class="col-sm-3 col-form-label">Processor Speed</label>
+                                    	<div class="col-sm-8">
+                                        	<input readonly th:value="${products.Processor_Speed}" type="text" class="form-control" id="Processor_Speed">
+                                    	</div>
+                                	</div>
+                                	<div class="row mb-3">
+                                    	<label for="Processor_Count" class="col-sm-3 col-form-label">Processor Count</label>
+                                    	<div class="col-sm-8">
+                                        	<input readonly th:value="${products.Processor_Count}" type="text" class="form-control" id="Processor_Count">
+                                    	</div>
+                                	</div>
+                                	<div class="row mb-3">
+                                    	<label for="RAM_Size" class="col-sm-3 col-form-label">RAM Size</label>
+                                    	<div class="col-sm-8">
+                                        	<input readonly th:value="${products.RAM_Size}" type="text" class="form-control" id="RAM_Size">
+                                    	</div>
+                                	</div>
+                                	<div class="row mb-3">
+                                    	<label for="Memory_Technology" class="col-sm-3 col-form-label">Memory Technology</label>
+                                    	<div class="col-sm-8">
+                                        	<input readonly th:value="${products.Memory_Technology}" type="text" class="form-control" id="Memory_Technology">
+                                    	</div>
+                                	</div>
+                                	<div class="row mb-3">
+                                    	<label for="Maximum_Memory_Supported" class="col-sm-3 col-form-label">Maximum Memory Supported</label>
+                                    	<div class="col-sm-8">
+                                        	<input readonly th:value="${products.Maximum_Memory_Supported}" type="text" class="form-control" id="Maximum_Memory_Supported">
+                                    	</div>
+                                	</div>
+                                	<div class="row mb-3">
+                                    	<label for="Memory_Clock_Speed" class="col-sm-3 col-form-label">Memory Clock Speed</label>
+                                    	<div class="col-sm-8">
+                                        	<input readonly th:value="${products.Memory_Clock_Speed}" type="text" class="form-control" id="Memory_Clock_Speed">
+                                    	</div>
+                                	</div>
+                                	<div class="row mb-3">
+                                    	<label for="Hard_Drive_Size" class="col-sm-3 col-form-label">Hard Drive Size</label>
+                                    	<div class="col-sm-8">
+                                        	<input readonly th:value="${products.Hard_Drive_Size}" type="text" class="form-control" id="Hard_Drive_Size" >
+                                    	</div>
+                                	</div>
+                                	<div class="row mb-3">
+                                    	<label for="Hard_Disk_Type_Description" class="col-sm-3 col-form-label">Hard Disk Type Description</label>
+                                    	<div class="col-sm-8">
+                                        	<input readonly th:value="${products.Hard_Disk_Type_Description}" type="text" class="form-control" id="Hard_Disk_Type_Description">
+                                    	</div>
+                                	</div>
+                                	<div class="row mb-3">
+                                    	<label for="Audio_Details" class="col-sm-3 col-form-label">Audio Details</label>
+                                    	<div class="col-sm-8">
+                                        	<input readonly th:value="${products.Audio_Details}" type="text" class="form-control" id="Audio_Details">
+                                    	</div>
+                                	</div>
+                                	<div class="row mb-3">
+                                    	<label for="Graphics_Chipset_Brand" class="col-sm-3 col-form-label">Graphics Chipset Brand</label>
+                                    	<div class="col-sm-8">
+                                        	<input readonly th:value="${products.Graphics_Chipset_Brand}" type="text" class="form-control" id="Graphics_Chipset_Brand">
+                                    	</div>
+                                	</div>
+                                	<div class="row mb-3">
+                                    	<label for="Graphics_Card_Description" class="col-sm-3 col-form-label">Graphics Card Description</label>
+                                    	<div class="col-sm-8">
+                                        	<input readonly th:value="${products.Graphics_Card_Description}" type="text" class="form-control" id="Graphics_Card_Description">
+                                    	</div>
+                                	</div>
+                                	<div class="row mb-3">
+                                    	<label for="Graphics_RAM_Type" class="col-sm-3 col-form-label">Graphics RAM Type</label>
+                                    	<div class="col-sm-8">
+                                        	<input readonly th:value="${products.Graphics_RAM_Type}" type="text" class="form-control" id="Graphics_RAM_Type">
+                                    	</div>
+                                	</div>
+                                	<div class="row mb-3">
+                                    	<label for="Graphics_Card_Ram_Size" class="col-sm-3 col-form-label">Graphics Card RAM Size</label>
+                                    	<div class="col-sm-8">
+                                        	<input readonly th:value="${products.Graphics_Card_Ram_Size}" type="text" class="form-control" id="Graphics_Card_Ram_Size">
+                                    	</div>
+                                	</div>
+                                	<div class="row mb-3">
+                                    	<label for="Graphics_Card_Interface" class="col-sm-3 col-form-label">Graphics Card Interface</label>
+                                    	<div class="col-sm-8">
+                                        	<input readonly th:value="${products.Graphics_Card_Interface}" type="text" class="form-control" id="Graphics_Card_Interface">
+                                    	</div>
+                                	</div>
+                                	<div class="row mb-3">
+                                    	<label for="Connectivity_Type" class="col-sm-3 col-form-label">Connectivity Type</label>
+                                    	<div class="col-sm-8">
+                                        	<input readonly th:value="${products.Connectivity_Type}" type="text" class="form-control" id="Connectivity_Type">
+                                    	</div>
+                                	</div>
+                                	<div class="row mb-3">
+                                    	<label for="Number_of_USB_2_0_Ports" class="col-sm-3 col-form-label">Number Of USB 2.0 Ports</label>
+                                    	<div class="col-sm-8">
+                                        	<input readonly th:value="${products.Number_of_USB_2_0_Ports}" type="text" class="form-control" id="Number_of_USB_2_0_Ports">
+                                    	</div>
+                                	</div>
+                                	<div class="row mb-3">
+                                    	<label for="Number_of_USB_3_0_Ports" class="col-sm-3 col-form-label">Number Of USB 3.0 Ports</label>
+                                    	<div class="col-sm-8">
+                                        	<input readonly th:value="${products.Number_of_USB_3_0_Ports}" type="text" class="form-control" id="Number_of_USB_3_0_Ports">
+                                    	</div>
+                                	</div>
+                                	<div class="row mb-3">
+                                    	<label for="Optical_Drive_Type" class="col-sm-3 col-form-label">Optical Drive Type</label>
+                                    	<div class="col-sm-8">
+                                        	<input readonly th:value="${products.Optical_Drive_Type}" type="text" class="form-control" id="Optical_Drive_Type">
+                                    	</div>
+                                	</div>
+                                	<div class="row mb-3">
+                                    	<label for="Rear_Webcam_Resolution" class="col-sm-3 col-form-label">Rear Webcam Resolution</label>
+                                    	<div class="col-sm-8">
+                                        	<input readonly th:value="${products.Rear_Webcam_Resolution}" type="text" class="form-control" id="Rear_Webcam_Resolution">
+                                    	</div>
+                                	</div>
+                                	<div class="row mb-3">
+                                    	<label for="Power_Source" class="col-sm-3 col-form-label">Power Source</label>
+                                    	<div class="col-sm-8">
+                                        	<input readonly th:value="${products.Power_Source}" type="text" class="form-control" id="Power_Source">
+                                    	</div>
+                                	</div>
+                                	<div class="row mb-3">
+                                    	<label for="Operating_System" class="col-sm-3 col-form-label">Operating System</label>
+                                    	<div class="col-sm-8">
+                                        	<input readonly th:value="${products.Operating_System}" type="text" class="form-control" id="Operating_System">
+                                    	</div>
+                                	</div>
+                                	<div class="row mb-3">
+                                    	<label for="Number_of_Lithium_Ion_Cells" class="col-sm-3 col-form-label">Number Of Lithium Ion Cells</label>
+                                    	<div class="col-sm-8">
+                                        	<input readonly th:value="${products.Number_of_Lithium_Ion_Cells}" type="text" class="form-control" id="Number_of_Lithium_Ion_Cells">
+                                    	</div>
+                                	</div>
+		
+								</div>
+                                <!--Hidden Fiels Of Laptop End  -->
+                                
+                                <!--Hidden Fiels Of Laptop Stand Start  -->
+                                
+                                <div id="Laptop Stand" class="hidden">
+                                    <div class="row mb-3">
+                                        <label for="Batteries_Included" class="col-sm-3 col-form-label">Batteries Included</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Batteries_Included}" type="text" class="form-control" id="Batteries_Included">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Hidden Fiels Of Laptop Stand End  -->
+
+                                <!--Hidden Fiels Of Laptop Bags Start  -->
+                                
+                                <div id="Laptop Bag" class="hidden">
+                                    <div class="row mb-3">
+                                        <label for="Special_feature" class="col-sm-3 col-form-label">Special Feature</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Special_feature}" type="text" class="form-control" id="Special_feature">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Batteries_Included" class="col-sm-3 col-form-label">Batteries Included</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Batteries_Included}" type="text" class="form-control" id="Batteries_Included">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Batteries_Required" class="col-sm-3 col-form-label">Batteries Required</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Batteries_Required}" type="text" class="form-control" id="Batteries_Required">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Material" class="col-sm-3 col-form-label">Material</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Material}" type="text" class="form-control" id="Material">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!--Hidden Fiels Of Laptop Bags End  -->
+
+                                <!--Hidden Fiels Of Laptop Sleeve Start  -->
+                                
+                                <div id="Laptop Sleeve" class="hidden">
+                                    <div class="row mb-3">
+                                        <label for="Special_feature" class="col-sm-3 col-form-label">Special Feature</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Special_feature}" type="text" class="form-control" id="Special_feature">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="Material" class="col-sm-3 col-form-label">Material</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Material}" type="text" class="form-control" id="Material">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Compatible_device" class="col-sm-3 col-form-label">Compatible Device</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Compatible_device}" type="text" class="form-control" id="Compatible_device">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Hidden Fiels Of Laptop Sleeve End  -->
+
+                                <!--Hidden Fiels Of Laptop Cleaning Brush Start  -->
+                                
+                                <div id="Laptop Cleaning Brush" class="hidden">
+                                    <div class="row mb-3">
+                                        <label for="Compatible_device" class="col-sm-3 col-form-label">Compatible Device</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Compatible_device}" type="text" class="form-control" id="Compatible_device">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Material" class="col-sm-3 col-form-label">Material</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Material}" type="text" class="form-control" id="Material">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <!--Hidden Fiels Of Laptop Cleaning Brush End  -->
+
+                                <!--Hidden Fiels Of RAM Start  -->
+                                
+                                <div id="RAM" class="hidden">
+                                    
+                                    <div class="row mb-3">
+                                        <label for="RAM_Size" class="col-sm-3 col-form-label">RAM Size</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.RAM_Size}" type="text" class="form-control" id="RAM_Size">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Memory_Technology" class="col-sm-3 col-form-label">Memory Technology</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Memory_Technology}" type="text" class="form-control" id="Memory_Technology">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Memory_Clock_Speed" class="col-sm-3 col-form-label">Memory Clock Speed</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Memory_Clock_Speed}" type="text" class="form-control" id="Memory_Clock_Speed">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Hidden Fiels Of RAM End  -->
+
+                                <!--Hidden Fiels Of SSD Start  -->
+                                
+                                <div id="SSD" class="hidden">
+                                    
+                                    <div class="row mb-3">
+                                        <label for="Hard_Drive_Size" class="col-sm-3 col-form-label">Hard Disk Size</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Hard_Drive_Size}" type="text" class="form-control" id="Hard_Drive_Size">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Hard_Disk_Type_Description" class="col-sm-3 col-form-label">Hard Disk Description</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Hard_Disk_Type_Description}" type="text" class="form-control" id="Hard_Disk_Type_Description">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <!--Hidden Fiels Of SSD End  -->
+
+                                <!--Hidden Fiels Of Hard Drive Start  -->
+                                
+                                <div id="Hard Drive" class="hidden">
+                                    
+                                    <div class="row mb-3">
+                                        <label for="Hard_Drive_Size" class="col-sm-3 col-form-label">Hard Drive Size</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Hard_Drive_Size}" type="text" class="form-control" id="Hard_Drive_Size">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Hard_Disk_Type_Description" class="col-sm-3 col-form-label">Hard Disk Description</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Hard_Disk_Type_Description}" type="text" class="form-control" id="Hard_Disk_Type_Description">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Hardware_Platform" class="col-sm-3 col-form-label">Hardware Platform</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Hardware_Platform}" type="text" class="form-control" id="Hardware_Platform">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Batteries_Included" class="col-sm-3 col-form-label">Batteries Included</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Batteries_Included}" type="text" class="form-control" id="Batteries_Included">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Hidden Fiels Of Hard Drive End  -->
+
+                                <!--Hidden Fiels Of Processor Start  -->
+                                
+                                <div id="Processor" class="hidden">
+                                    
+                                    <div class="row mb-3">
+                                        <label for="Batteries" class="col-sm-3 col-form-label">Batteries</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Batteries}" type="text" class="form-control" id="Batteries">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Processor_Brand" class="col-sm-3 col-form-label">Processor Brand</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Processor_Brand}" type="text" class="form-control" id="Processor_Brand">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Processor_Type" class="col-sm-3 col-form-label">Processor Type</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Processor_Type}" type="text" class="form-control" id="Processor_Type">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Processor_Speed" class="col-sm-3 col-form-label">Processor Speed</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Processor_Speed}" type="text" class="form-control" id="Processor_Speed">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Processor_Count" class="col-sm-3 col-form-label">Processor Count</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Processor_Count}" type="text" class="form-control" id="Processor_Count">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Memory_Technology" class="col-sm-3 col-form-label">Memory Technology</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Memory_Technology}" type="text" class="form-control" id="Memory_Technology">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Graphics_Card_Interface" class="col-sm-3 col-form-label">Graphics Card Interface</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Graphics_Card_Interface}" type="text" class="form-control" id="Graphics_Card_Interface">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Batteries_Included" class="col-sm-3 col-form-label">Batteries Included</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Batteries_Included}" type="text" class="form-control" id="Batteries_Included">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Number_of_Lithium_Ion_Cells" class="col-sm-3 col-form-label">Number Of Lithium Ion Cells</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Number_of_Lithium_Ion_Cells}" type="text" class="form-control" id="Number_of_Lithium_Ion_Cells">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Hidden Fiels Of Processor End  -->
+                                
+                                <!--Hidden Fiels Of Keyboard Start  -->
+                                
+                                <div id="Keyboard" class="hidden">
+                                    
+                                    <div class="row mb-3">
+                                        <label for="Operating_System" class="col-sm-3 col-form-label">Operating System</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Operating_System}" type="text" class="form-control" id="Operating_System">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Special_feature" class="col-sm-3 col-form-label">Special Feature</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Special_feature}" type="text" class="form-control" id="Special_feature">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Compatible_device" class="col-sm-3 col-form-label">Compatible Device</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Compatible_device}" type="text" class="form-control" id="Compatible_device">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Hardware_Platform" class="col-sm-3 col-form-label">Hardware Platform</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Hardware_Platform}" type="text" class="form-control" id="Hardware_Platform">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Power_Source" class="col-sm-3 col-form-label">Power Source</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Power_Source}" type="text" class="form-control" id="Power_Source">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Connector_Type" class="col-sm-3 col-form-label">Connector Type</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Connector_Type}" type="text" class="form-control" id="Connector_Type">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Hand_Orientation" class="col-sm-3 col-form-label">Hand Orientation</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Hand_Orientation}" type="text" class="form-control" id="Hand_Orientation">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Hidden Fiels Of Keyboard End  -->
+
+                                <!--Hidden Fiels Of Mouse Start  -->
+                                
+                                <div id="Mouse" class="hidden">
+
+                                    <div class="row mb-3">
+                                        <label for="Special_feature" class="col-sm-3 col-form-label">Special Feature</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Special_feature}" type="text" class="form-control" id="Special_feature">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="Compatible_device" class="col-sm-3 col-form-label">Compatible Device</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Compatible_device}" type="text" class="form-control" id="Compatible_device">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="Maximum_resolution" class="col-sm-3 col-form-label">Maximum Resolution</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Maximum_resolution}" type="text" class="form-control" id="Maximum_resolution">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="Power_Source" class="col-sm-3 col-form-label">Power Source</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Power_Source}" type="text" class="form-control" id="Power_Source">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="Batteries_Included" class="col-sm-3 col-form-label">Batteries Included</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Batteries_Included}" type="text" class="form-control" id="Batteries_Included">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="Batteries_Required" class="col-sm-3 col-form-label">Batteries Required</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Batteries_Required}" type="text" class="form-control" id="Batteries_Required">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="Connector_Type" class="col-sm-3 col-form-label">Connector Type</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Connector_Type}" type="text" class="form-control" id="Connector_Type">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="Movement_Detection_Technology" class="col-sm-3 col-form-label">Movement Detection Technology</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Movement_Detection_Technology}" type="text" class="form-control" id="Movement_Detection_Technology">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="Material" class="col-sm-3 col-form-label">Material</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Material}" type="text" class="form-control" id="Material">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <!--Hidden Fiels Of Mouse End  -->
+
+                                <!--Hidden Fiels Of MousePad Start  -->
+                                
+                                <div id="Mouse Pad" class="hidden">
+                                    
+                                    <div class="row mb-3">
+                                        <label for="Special_feature" class="col-sm-3 col-form-label">Special Feature</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Special_feature}" type="text" class="form-control" id="Special_feature">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Material" class="col-sm-3 col-form-label">Material</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Material}" type="text" class="form-control" id="Material">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <!--Hidden Fiels Of MousePad End  -->
+
+                                <!--Hidden Fiels Of Web Cover Slide Start  -->
+                                
+                                <div id="Webcam Cover Slide" class="hidden">
+                                    <div class="row mb-3">
+                                        <label for="Hardware_Platform" class="col-sm-3 col-form-label">Hardware Platform</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Hardware_Platform}" type="text" class="form-control" id="Hardware_Platform">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Special_feature" class="col-sm-3 col-form-label">Special Feature</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Special_feature}" type="text" class="form-control" id="Special_feature">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Compatible_device" class="col-sm-3 col-form-label">Compatible Device</label>
+                                        <div class="col-sm-8">
+                                            <input readonly th:value="${products.Compatible_device}" type="text" class="form-control" id="Compatible_device">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Hidden Fiels Of Web Cover Slide End  -->
+
+                                <div class="row mb-3">
+                                    <label for="formFile" class="form-label">Product Image</label>
+                                    <div class="offset-sm-4 col-sm-8">
+                                        <img th:src="@{'/images/'+${products.Product_Image}}" alt="..." width="180">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label class="col-sm-3 col-form-label">Created At</label>
+                                    <div class="col-sm-8">
+                                        <input readonly class="form-control" th:value="${products.createdAt}">
+                                    </div>
+                                </div>
+                                    <a role="button" class="btn btn-primary" href="viewproduct">Back</a>
+                            </form>
+                            <br>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+	
+            <!-- Footer Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-light rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-sm-start">
+                            &copy; <a href="#">TechHub</a>, All Right Reserved.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End -->
+            
+        </div>
+        <!-- Content End -->
+	
+	<!-- Back to Top -->
+	
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+	</div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/chart/chart.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    <script>
+        function toggleFields() {
+            
+            //Get the value of the Form_Factor field
+            var formFactor = document.getElementById("Form_Factor").value;
+
+            // Hide all fields by default
+            var hiddenFields = document.querySelectorAll(".hidden");
+            hiddenFields.forEach(function(field) {
+                field.style.display = "none";
+            });
+
+            // Show fields based on Form_Factor value
+            var correspondingField = document.getElementById(formFactor);
+            if (correspondingField) {
+                correspondingField.style.display = "block";
+            }
+
+        }
+        // Call toggleFields function when the page loads
+        window.onload = toggleFields;
+    </script>
+</body>
+</html>
