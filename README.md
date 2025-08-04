@@ -58,7 +58,6 @@ TechHub is a full-stack E-Commerce platform built using **Java Spring Boot**, de
 | Home Page            | ![Home](screenshots/home.png)               |
 | Shop Page            | ![Shop](screenshots/shop.png)               |
 | Product Detail       | ![Product Detail](screenshots/product-detail.png) |
-| Cart Page            | ![Cart](screenshots/cart.png)               |
 | Checkout Page        | ![Checkout](screenshots/checkout.png)       |
 | Place Order Page        | ![Place Order](screenshots/place-order.png) |
 | Payment Page        | ![Payment](screenshots/payment.png)          |
