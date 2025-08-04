@@ -3,7 +3,7 @@
 TechHub is a full-stack E-Commerce platform built using **Java Spring Boot**, designed to offer a seamless shopping experience to users and powerful admin tools for managing products, brands, categories, and orders.
 
 > 📅 Developed as part of an MCA Final Semester Internship Project at **SSM Infotech Solutions, Surat**  
-> 👨‍💻 Submitted by: Mahmaduvesh Zakirhusen Mullan (202204104610007)  
+> 👨‍💻 Submitted by: Mahmaduvesh Zakirhusen Mullan 
 > 📆 Duration: December 2023 – May 2024
 
 ---
