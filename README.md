@@ -8,11 +8,6 @@ TechHub is a full-stack E-Commerce platform built using **Java Spring Boot**, de
 
 ---
 
-## 🌐 Live Preview (Optional)
-Add your GitHub Pages link or deployed site link here (if available).
-
----
-
 ## 📌 Table of Contents
 - [Features](#features)
 - [Tech Stack](#tech-stack)
@@ -24,7 +19,7 @@ Add your GitHub Pages link or deployed site link here (if available).
 
 ---
 
-## ✅ Features
+## ✅ System Features
 
 ### 👤 User Module
 - User Registration & Login (with encoded passwords)
@@ -38,12 +33,6 @@ Add your GitHub Pages link or deployed site link here (if available).
 - Product Image Upload & Validation
 - View Sales Reports & Customer Orders
 - Inventory & Stock Management
-
-### 📊 System Features
-- Pagination on product listings
-- Real-time order tracking
-- Delivery Management
-- Speech-to-text capabilities (optional enhancement)
 
 ---
 
@@ -77,7 +66,6 @@ Add your GitHub Pages link or deployed site link here (if available).
 | Admin - Add Product  | ![Admin Product](screenshots/add-product.png) |
 | Admin - View Product | ![Admin View](screenshots/view-product.png) |
 
-> 📁 Place your screenshots inside a `screenshots/` folder and name them accordingly or update the file names above.
 
 ---
 
@@ -92,7 +80,7 @@ Key Tables:
 - `Cart_Master` & `Cart_Item`: Cart management
 - `Order_Master`: Orders with Razorpay integration
 
-Refer to the full [data dictionary](#) for detailed schema.
+[//]:Refer to the full [data dictionary](#) for detailed schema.
 
 ---
 
