@@ -1,0 +1,104 @@
+# 🛍️ TechHub - E-Commerce Web Application
+
+TechHub is a full-stack E-Commerce platform built using **Java Spring Boot**, designed to offer a seamless shopping experience to users and powerful admin tools for managing products, brands, categories, and orders.
+
+> 📅 Developed as part of an MCA Final Semester Internship Project at **SSM Infotech Solutions, Surat**  
+> 👨‍💻 Submitted by: Mahmaduvesh Zakirhusen Mullan (202204104610007)  
+> 📆 Duration: December 2023 – May 2024
+
+---
+
+## 🌐 Live Preview (Optional)
+Add your GitHub Pages link or deployed site link here (if available).
+
+---
+
+## 📌 Table of Contents
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [UI Screenshots](#ui-screenshots)
+- [Database Tables](#database-tables)
+- [Installation](#installation)
+- [Contributing](#contributing)
+- [License](#license)
+
+---
+
+## ✅ Features
+
+### 👤 User Module
+- User Registration & Login (with encoded passwords)
+- View Products by Category/Brand
+- Add to Cart, Update Cart, Remove from Cart
+- Checkout & Order Placement
+- Razorpay Payment Integration
+
+### 🛒 Admin Module
+- Add/Edit/Delete Brands, Categories, Products
+- Product Image Upload & Validation
+- View Sales Reports & Customer Orders
+- Inventory & Stock Management
+
+### 📊 System Features
+- Pagination on product listings
+- Real-time order tracking
+- Delivery Management
+- Speech-to-text capabilities (optional enhancement)
+
+---
+
+## 🔧 Tech Stack
+
+| Layer            | Technology                         |
+|------------------|-------------------------------------|
+| Backend          | Java Spring Boot                    |
+| Frontend         | Thymeleaf, Bootstrap                |
+| Database         | MySQL                               |
+| Payment Gateway  | Razorpay API                        |
+| Styling          | HTML5, CSS3, JavaScript, Bootstrap  |
+| Architecture     | MVC (Model-View-Controller)         |
+
+---
+
+## 🖼️ UI Screenshots
+
+| Page                 | Screenshot                         |
+|----------------------|------------------------------------|
+| Registration Page    | ![Registration](screenshots/registration.png) |
+| Login Page           | ![Login](screenshots/login.png)             |
+| Home Page            | ![Home](screenshots/home.png)               |
+| Shop Page            | ![Shop](screenshots/shop.png)               |
+| Product Detail       | ![Product Detail](screenshots/product-detail.png) |
+| Cart Page            | ![Cart](screenshots/cart.png)               |
+| Checkout Page        | ![Checkout](screenshots/checkout.png)       |
+| Place Order Page        | ![Place Order](screenshots/place-order.png) |
+| Payment Page        | ![Payment](screenshots/payment.png)          |
+| Admin - Add Brand    | ![Admin Brand](screenshots/add-brand.png)   |
+| Admin - Add Product  | ![Admin Product](screenshots/add-product.png) |
+| Admin - View Product | ![Admin View](screenshots/view-product.png) |
+
+> 📁 Place your screenshots inside a `screenshots/` folder and name them accordingly or update the file names above.
+
+---
+
+## 🗄️ Database Tables (MySQL)
+
+Key Tables:
+
+- `Users_Master`: Stores user details
+- `Brand_Master`: Stores product brands
+- `Category_Master`: Product categories
+- `Product_Master`: Products and their specifications
+- `Cart_Master` & `Cart_Item`: Cart management
+- `Order_Master`: Orders with Razorpay integration
+
+Refer to the full [data dictionary](#) for detailed schema.
+
+---
+
+## ⚙️ Installation
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/Uvesh77/TechHub.git
+   cd TechHub
