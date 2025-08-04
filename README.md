@@ -90,3 +90,26 @@ Key Tables:
    ```bash
    git clone https://github.com/Uvesh77/TechHub.git
    cd TechHub
+
+2. **Setup the Database**
+
+    Create a MySQL database (e.g., techhub_db)
+
+
+3. **Update Application Properties**
+
+    Go to src/main/resources/application.properties and update:
+
+    spring.datasource.url=jdbc:mysql://localhost:3306/techhub_db
+    spring.datasource.username=root
+    spring.datasource.password=yourpassword
+
+4. **Run the App**
+
+    Use your IDE or run via Maven:
+
+    mvn spring-boot:run
+
+5. **Access the App**
+
+    Open browser and go to: http://localhost:8080/
