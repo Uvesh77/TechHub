@@ -100,6 +100,7 @@ Key Tables:
 
     Go to src/main/resources/application.properties and update:
 
+    ```bash
     spring.datasource.url=jdbc:mysql://localhost:3306/techhub_db
     spring.datasource.username=root
     spring.datasource.password=yourpassword
@@ -107,9 +108,9 @@ Key Tables:
 4. **Run the App**
 
     Use your IDE or run via Maven:
-
+    ```bash
     mvn spring-boot:run
 
 5. **Access the App**
-
+    ```bash
     Open browser and go to: http://localhost:8080/
