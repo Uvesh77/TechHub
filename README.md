@@ -80,7 +80,7 @@ Key Tables:
 - `Cart_Master` & `Cart_Item`: Cart management
 - `Order_Master`: Orders with Razorpay integration
 
-[//]:Refer to the full [data dictionary](#) for detailed schema.
+//Refer to the full [data dictionary](#) for detailed schema.
 
 ---
 
